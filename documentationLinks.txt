@@ -1,2 +1,29 @@
 Speech to text: https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats
 Text to speech: https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats
+
+
+text to speech custom builder
+The Speech To Text Custom Builder is used to create customizations for Speech to Text. It supports the following modes
+
+Create Custom Language Model
+In this mode, a new empty custom model is created. The new customization id is returned on msg.customization_id
+
+List Customizations
+Use this mode to list customizations such as the name and description for all custom voice models that you own for all languages. Data is returned on msg.customizations
+
+Get Customization
+Use this mode to list all information about a specifid custom voice model. The response includes the words in the model and their translations as defined in the model. Data is returned on msg.customization
+
+Get Pronounciation
+Use this mode to show the phonetic pronounciation of words for voices or customizations. Data is returned on msg.pronunciation
+
+Add Words
+Adds one or more words and their translations to the specified custom voice model. The input corpus content should be provided as buffer or JSoN Array of Words on msg.payload
+
+Get Words
+Lists all of the words and their translations for the specified custom voice model. Data is returned on msg.words
+
+Delete Word
+Deletes a single word from the specified custom voice model.
+
+For more information about Speech To Text customization, read the documentation.
