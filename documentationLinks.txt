@@ -1,0 +1,2 @@
+Speech to text: https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats
+Text to speech: https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats
