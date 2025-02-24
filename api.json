@@ -1,1 +1,92 @@
-
+[
+    {
+        "id": "771da7498c3fe3ba",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a0209f6f5050353e",
+        "type": "http in",
+        "z": "771da7498c3fe3ba",
+        "name": "",
+        "url": "/speech",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "d9395ebe99995f58"
+            ]
+        ]
+    },
+    {
+        "id": "d9395ebe99995f58",
+        "type": "watson-text-to-speech",
+        "z": "771da7498c3fe3ba",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaVoice",
+        "voicehidden": "",
+        "format": "audio/mp3",
+        "password": "",
+        "apikey": "kgs7p8UlUJJOyFdDKCsXoNymOBaBP9TR9wGC30LMSrHK",
+        "payload-response": true,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca0f19aa-712b-43fe-8efe-9fc20eb29211",
+        "credentials": {},
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "0989344be10df171",
+                "3ffe672296228f0a",
+                "92074fa61a60fa97"
+            ]
+        ]
+    },
+    {
+        "id": "0989344be10df171",
+        "type": "debug",
+        "z": "771da7498c3fe3ba",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 550,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3ffe672296228f0a",
+        "type": "play audio",
+        "z": "771da7498c3fe3ba",
+        "name": "",
+        "voice": "0",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "92074fa61a60fa97",
+        "type": "http response",
+        "z": "771da7498c3fe3ba",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 220,
+        "wires": []
+    }
+]
