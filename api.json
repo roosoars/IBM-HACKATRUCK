@@ -16,7 +16,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 170,
+        "x": 130,
         "y": 160,
         "wires": [
             [
@@ -33,7 +33,7 @@
         "langhidden": "pt-BR",
         "langcustom": "NoCustomisationSetting",
         "langcustomhidden": "",
-        "voice": "pt-BR_IsabelaVoice",
+        "voice": "pt-BR_LucasExpressive",
         "voicehidden": "",
         "format": "audio/mp3",
         "password": "",
@@ -41,7 +41,7 @@
         "payload-response": true,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca0f19aa-712b-43fe-8efe-9fc20eb29211",
         "credentials": {},
-        "x": 400,
+        "x": 380,
         "y": 160,
         "wires": [
             [
@@ -60,8 +60,8 @@
         "tosidebar": true,
         "console": true,
         "tostatus": true,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "payload",
         "statusType": "auto",
         "x": 550,
@@ -74,8 +74,8 @@
         "z": "771da7498c3fe3ba",
         "name": "",
         "voice": "0",
-        "x": 650,
-        "y": 120,
+        "x": 630,
+        "y": 100,
         "wires": []
     },
     {
@@ -85,8 +85,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 690,
-        "y": 220,
+        "x": 610,
+        "y": 160,
         "wires": []
     }
 ]
