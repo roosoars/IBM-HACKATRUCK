@@ -17,10 +17,10 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 200,
+        "y": 240,
         "wires": [
             [
-                "730cd2ffd1c5a19a"
+                "098307ecb06c1bfe"
             ]
         ]
     },
@@ -40,8 +40,8 @@
         "apikey": "kgs7p8UlUJJOyFdDKCsXoNymOBaBP9TR9wGC30LMSrHK",
         "payload-response": true,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca0f19aa-712b-43fe-8efe-9fc20eb29211",
-        "x": 600,
-        "y": 200,
+        "x": 740,
+        "y": 240,
         "wires": [
             [
                 "3ffe672296228f0a",
@@ -55,8 +55,8 @@
         "z": "771da7498c3fe3ba",
         "name": "",
         "voice": "0",
-        "x": 810,
-        "y": 200,
+        "x": 950,
+        "y": 240,
         "wires": []
     },
     {
@@ -66,8 +66,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 790,
-        "y": 240,
+        "x": 930,
+        "y": 280,
         "wires": []
     },
     {
@@ -91,11 +91,13 @@
         "trainid": "",
         "lgparams2": true,
         "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e4848adf-b58b-4ff5-ac07-f0ee73adb6ba",
-        "x": 390,
-        "y": 200,
+        "x": 530,
+        "y": 240,
         "wires": [
             [
-                "d9395ebe99995f58"
+                "d9395ebe99995f58",
+                "b17a534376f8b043",
+                "72cba8e213c26516"
             ]
         ]
     },
@@ -109,7 +111,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "9470525c0ee8360e"
@@ -133,7 +135,7 @@
         "payload-response": true,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca0f19aa-712b-43fe-8efe-9fc20eb29211",
         "x": 600,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "e58b701e2f3c1efb",
@@ -148,7 +150,7 @@
         "name": "",
         "voice": "0",
         "x": 810,
-        "y": 340,
+        "y": 360,
         "wires": []
     },
     {
@@ -159,7 +161,7 @@
         "statusCode": "",
         "headers": {},
         "x": 790,
-        "y": 380,
+        "y": 400,
         "wires": []
     },
     {
@@ -184,30 +186,12 @@
         "lgparams2": true,
         "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e4848adf-b58b-4ff5-ac07-f0ee73adb6ba",
         "x": 390,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
-                "fc544bef56da7816",
-                "579e81b0cb21b2c0"
+                "fc544bef56da7816"
             ]
         ]
-    },
-    {
-        "id": "579e81b0cb21b2c0",
-        "type": "debug",
-        "z": "771da7498c3fe3ba",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": true,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "payload",
-        "statusType": "auto",
-        "x": 590,
-        "y": 300,
-        "wires": []
     },
     {
         "id": "0990e442eb11452a",
@@ -242,14 +226,12 @@
         "apikey": "kgs7p8UlUJJOyFdDKCsXoNymOBaBP9TR9wGC30LMSrHK",
         "payload-response": true,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca0f19aa-712b-43fe-8efe-9fc20eb29211",
-        "credentials": {},
         "x": 600,
         "y": 500,
         "wires": [
             [
                 "216bad5f236dc028",
-                "d1990e22db3417b5",
-                "9c2f246b641f9ccd"
+                "d1990e22db3417b5"
             ]
         ]
     },
@@ -304,23 +286,6 @@
         ]
     },
     {
-        "id": "9c2f246b641f9ccd",
-        "type": "debug",
-        "z": "771da7498c3fe3ba",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": true,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "payload",
-        "statusType": "auto",
-        "x": 810,
-        "y": 460,
-        "wires": []
-    },
-    {
         "id": "c7ac22871113fea3",
         "type": "http in",
         "z": "771da7498c3fe3ba",
@@ -330,7 +295,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 110,
-        "y": 700,
+        "y": 620,
         "wires": [
             [
                 "a9082fda8d44de8c"
@@ -354,7 +319,7 @@
         "payload-response": true,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca0f19aa-712b-43fe-8efe-9fc20eb29211",
         "x": 600,
-        "y": 700,
+        "y": 620,
         "wires": [
             [
                 "53309dc3d3ac4240",
@@ -369,7 +334,7 @@
         "name": "",
         "voice": "0",
         "x": 810,
-        "y": 700,
+        "y": 620,
         "wires": []
     },
     {
@@ -380,7 +345,7 @@
         "statusCode": "",
         "headers": {},
         "x": 790,
-        "y": 740,
+        "y": 660,
         "wires": []
     },
     {
@@ -405,19 +370,18 @@
         "lgparams2": true,
         "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e4848adf-b58b-4ff5-ac07-f0ee73adb6ba",
         "x": 390,
-        "y": 700,
+        "y": 620,
         "wires": [
             [
-                "e975d9c47cd4972e",
-                "991c2ae7a78f6e2f"
+                "e975d9c47cd4972e"
             ]
         ]
     },
     {
-        "id": "991c2ae7a78f6e2f",
+        "id": "b17a534376f8b043",
         "type": "debug",
         "z": "771da7498c3fe3ba",
-        "name": "debug 7",
+        "name": "debug 4",
         "active": true,
         "tosidebar": true,
         "console": true,
@@ -426,8 +390,50 @@
         "targetType": "full",
         "statusVal": "payload",
         "statusType": "auto",
-        "x": 590,
-        "y": 660,
+        "x": 770,
+        "y": 140,
         "wires": []
+    },
+    {
+        "id": "098307ecb06c1bfe",
+        "type": "function",
+        "z": "771da7498c3fe3ba",
+        "name": "function 4",
+        "func": "msg.originalMessage = msg.payload;  \nmsg.date = Date();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "730cd2ffd1c5a19a"
+            ]
+        ]
+    },
+    {
+        "id": "72cba8e213c26516",
+        "type": "cloudantplus out",
+        "z": "771da7498c3fe3ba",
+        "name": "",
+        "cloudant": "98e0486ee889899f",
+        "database": "matheusbeneti",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 780,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98e0486ee889899f",
+        "type": "cloudantplus",
+        "host": "https://f1c0dcf9-5075-4061-a1f8-2f4ca596058a-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "",
+        "useapikey": true
     }
 ]
