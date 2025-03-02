@@ -1,5 +1,5 @@
 //
-//  History.swift
+//  Dictionary.swift
 //  TraduzAi
 //
 //  Created by Rodrigo Soares on 28/02/25.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct History: View {
+struct Dictionary: View {
     var body: some View {
         VStack {
-            Text("Tela History")
+            Text("Tela Dicionário")
                 .font(.largeTitle)
                 .padding()
         }

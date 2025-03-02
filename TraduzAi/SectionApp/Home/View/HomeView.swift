@@ -10,26 +10,57 @@ import SwiftUI
 #if canImport(UIKit)
 extension View {
     func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                        to: nil, from: nil, for: nil)
     }
 }
 #endif
 
-// Componente customizado que encapsula UITextView e permite descartar o teclado ao pressionar o Return
+// Componente customizado que encapsula UITextView e permite descartar o teclado ao pressionar o Return.
+// Agora com suporte a placeholder, fonte e cor do texto.
 struct CustomTextEditor: UIViewRepresentable {
     @Binding var text: String
+    var placeholder: String = ""
+    var textColor: UIColor = .label
+    var font: UIFont = UIFont.preferredFont(forTextStyle: .body)
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
-        textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.returnKeyType = .done
         textView.backgroundColor = .clear
+        textView.textColor = textColor
+        textView.font = font
+        
+        // Cria e configura o label de placeholder
+        let placeholderLabel = UILabel()
+        placeholderLabel.text = placeholder
+        placeholderLabel.font = font
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeholderLabel.tag = 100  // Tag para identificação
+        
+        textView.addSubview(placeholderLabel)
+        
+        NSLayoutConstraint.activate([
+            placeholderLabel.topAnchor.constraint(equalTo: textView.topAnchor, constant: 8),
+            placeholderLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 5),
+            placeholderLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: -5)
+        ])
+        
         return textView
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
+        uiView.textColor = textColor
+        uiView.font = font
+        
+        // Atualiza a visibilidade do placeholder
+        if let placeholderLabel = uiView.viewWithTag(100) as? UILabel {
+            placeholderLabel.isHidden = !uiView.text.isEmpty
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -45,6 +76,9 @@ struct CustomTextEditor: UIViewRepresentable {
         
         func textViewDidChange(_ textView: UITextView) {
             self.text.wrappedValue = textView.text
+            if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
+                placeholderLabel.isHidden = !textView.text.isEmpty
+            }
         }
         
         // Detecta o retorno e encerra o teclado
@@ -59,18 +93,20 @@ struct CustomTextEditor: UIViewRepresentable {
 }
 
 struct HomeView: View {
-    @State private var sourceLanguage: String = "English"
-    @State private var targetLanguage: String = "Spanish"
+    @State private var sourceLanguage: String = "Português"
+    @State private var targetLanguage: String = "Inglês"
     @State private var sourceText: String = ""
     @State private var translatedText: String = ""
     
-    let languages = ["English", "Spanish", "Portuguese"]
+    let languages = ["Inglês", "Espanhol", "Português"]
     
     init() {
         // Configura os atributos do UISegmentedControl para definir a fonte e a cor do texto
         if let customFont = UIFont(name: "YourCustomFont", size: 16) {
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black, .font: customFont], for: .normal)
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black, .font: customFont], for: .selected)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black,
+                                                                    .font: customFont], for: .normal)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black,
+                                                                    .font: customFont], for: .selected)
         }
     }
     
@@ -85,23 +121,42 @@ struct HomeView: View {
             
             VStack(spacing: 20) {
                 
-                Text("TraduzAi")
-                    .font(.title)
-                    .fontWeight(.bold)
+                HStack(spacing: 0){
+                    Lottie(animationFileName: "TraduzAi", loopMode: .loop)
+                        .frame(maxWidth: 100, maxHeight: 100)
+                        .clipped()
+                        .padding(.horizontal, -25)
+                        .padding(.vertical, -25)
+
+                    
+                    Text("TraduzAi")
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
+                .padding(.trailing, 15)
+                .frame(alignment: .center)
                 
-                Text("Vamos descobrir novas linguagens ?")
+                Text("Traduzir textos e áudio nunca foi tão fácil.")
                     .foregroundStyle(Color("GRAY_COLOR"))
                 
                 VStack(spacing: 0) {
                     HStack {
-                        // Picker de idioma de origem com estilo segmentado
-                        Picker("Idioma de origem", selection: $sourceLanguage) {
+                        // Substitui o Picker por um Menu com seta para baixo
+                        Menu {
+                            // Lista de idiomas de origem
                             ForEach(languages, id: \.self) { language in
-                                Text(language)
+                                Button(language) {
+                                    sourceLanguage = language
+                                }
                             }
+                        } label: {
+                            HStack {
+                                Text(sourceLanguage)
+                                Image(systemName: "chevron.down")
+                            }
+                            .foregroundColor(.black)
+                            .padding(.horizontal)
                         }
-                        .accentColor(.black)
-                        .padding(.horizontal)
                         
                         Spacer()
                         
@@ -114,11 +169,15 @@ struct HomeView: View {
                         }
                     }
                     
-                    // Campo de texto de origem utilizando o CustomTextEditor com altura definida
-                    CustomTextEditor(text: $sourceText)
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(.horizontal)
+                    // Campo de texto de origem utilizando o CustomTextEditor com placeholder
+                    CustomTextEditor(
+                        text: $sourceText,
+                        placeholder: "Digite o texto original",
+                        textColor: UIColor(named: "GRAY_COLOR") ?? .gray,
+                        font: UIFont.systemFont(ofSize: 14)
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.horizontal)
                     
                     Rectangle()
                         .frame(height: 1)
@@ -126,14 +185,21 @@ struct HomeView: View {
                         .padding()
                     
                     HStack {
-                        // Picker de idioma de destino com estilo segmentado
-                        Picker("Idioma de destino", selection: $targetLanguage) {
+                        // Substitui o Picker de destino por outro Menu
+                        Menu {
                             ForEach(languages, id: \.self) { language in
-                                Text(language)
+                                Button(language) {
+                                    targetLanguage = language
+                                }
                             }
+                        } label: {
+                            HStack {
+                                Text(targetLanguage)
+                                Image(systemName: "chevron.down")
+                            }
+                            .foregroundColor(.black)
+                            .padding(.horizontal)
                         }
-                        .accentColor(.black)
-                        .padding(.horizontal)
                         
                         Spacer()
                         
@@ -146,11 +212,15 @@ struct HomeView: View {
                         }
                     }
                     
-                    // Campo de texto traduzido utilizando o CustomTextEditor com altura definida
-                    CustomTextEditor(text: $translatedText)
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(.horizontal)
+                    // Campo de texto traduzido utilizando o CustomTextEditor com placeholder
+                    CustomTextEditor(
+                        text: $translatedText,
+                        placeholder: "A tradução aparecerá aqui",
+                        textColor: UIColor(named: "GRAY_COLOR") ?? .gray,
+                        font: UIFont.systemFont(ofSize: 14)
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.horizontal)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 10)

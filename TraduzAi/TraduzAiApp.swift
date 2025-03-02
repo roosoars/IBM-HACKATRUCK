@@ -14,13 +14,13 @@ struct MyApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                HomeView()
+                TabBarView()
                 
                 if showSplash {
-                    LauchView()
+                    LauchScreenView()
                         .transition(.opacity)
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 withAnimation {
                                     showSplash = false
                                 }
@@ -31,6 +31,3 @@ struct MyApp: App {
         }
     }
 }
-
-//ADICIONADO LOTTIE FILES
-//ADICIONADO LAUCHVIEW

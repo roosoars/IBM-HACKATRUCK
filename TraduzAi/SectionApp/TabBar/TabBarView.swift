@@ -48,14 +48,14 @@ struct TabBarView: View {
             TranslatorAudio()
                 .tabItem {
                     Image(selection == 3 ? "MICROPHONE_OUTLINE" : "MICROPHONE")
-                    Text("Audio")
+                    Text("Áudio")
                 }
                 .tag(3)
             
-            History()
+            Dictionary()
                 .tabItem {
-                    Image(selection == 4 ? "HISTORY_OUTLINE" : "HISTORY")
-                    Text("Histórico")
+                    Image(selection == 4 ? "DICTIONARY_OUTLINE" : "DICTIONARY")
+                    Text("Dicionário")
                 }
                 .tag(4)
         }
